@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 화면 </title>
+    <style>
+        .list table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .list table th, .list table td {
+            border:solid 1px #000;
+        }
+        .list .buttons {
+          padding: 10px 0;
+        }
+        .list .buttons a, .list .buttons button {
+          border-width: 0;
+          font-size: 10px;
+          cursor: pointer;
+        }
+        
+        .nothing {
+          text-align: center;
+        }
+    </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function() {
+      
+      $('#delButton').on('click', function () {
+        var $check = $('table input[type=checkbox]:checked');
+        
+        if ($check.length <= 0) {
+          alter(' 삭제할 배너를 선택해주세요. ');
+          return false;
+        }
+        
+        var delIds = [];
+        
+        $.each($check, function (k, v) {
+          delIds.push($(this).val());
+        });
+      });
+      
+      $('button.update-button').on('click', function() {
+        
+        if (!confirm('카테고리를 수정하시겠습니까?')) {
+          return false;
+        }
+        
+      });
+      
+    });
+  </script>
+</head>
+<body>
+    <h1>배너 관리</h1>
+    <div th:replace="/fragments/layout.html :: fragment-admin-body-menu"></div>
+    
+    <div class="buttons" style="margin-top: 20px">
+      <button id="delButton" type="button"> 선택 삭제 </button>
+      <a href="/admin/banner/add"> 배너 등록 </a>
+    </div>
+    
+    <div>
+      <p class="total-count">전체 <span th:text="${totalCount}"></span>개</p>
+    </div>
+
+    <div class="list">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                      <input type="checkbox"/>
+                    </th>
+                    <th>
+                        NO
+                    </th>
+                    <th>
+                        배너명
+                    </th>
+                    <th>
+                        이미지
+                    </th>
+                    <th>
+                        등록일
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr th:each="x : ${list}">
+                <td>
+                  <input type="checkbox"/>
+                </td>
+                <td th:text="${x.showNumber}">1</td>
+                <td th:text="${x.bannerName}">메인배너1</td>
+                <td th:text="${x.imageInfo}">이미지주소</td>
+                <td th:text="${x.regDt}">2023.12.10 11:10</td>
+              </tr>
+              <tr th:if="${#lists.size(list) < 1}">
+                <td colspan="5" >
+                  <p class="nothing">내용이 없습니다.</p>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <form name="delete" method="post" action="/admin/banner/delete.do">
+      <input type="hidden" name="delIds"/>
+    </form>
+
+</body>
+</html>

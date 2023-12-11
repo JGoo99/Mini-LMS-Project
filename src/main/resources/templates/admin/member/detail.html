@@ -18,6 +18,9 @@
         .login table th, .login table td {
           border:solid 1px #000;
         }
+        .nothing {
+          text-align: center;
+        }
 
     </style>
 </head>
@@ -129,6 +132,11 @@
                 <td th:text="${x.loginDt}">2023.12.10 14:15</td>
                 <td th:text="${x.clientIp}">127.0.0.1</td>
                 <td th:text="${x.userAgent}">Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36</td>
+            </tr>
+            <tr th:if="${#lists.size(logins) < 1}">
+              <td colspan="4" >
+                <p class="nothing">내용이 없습니다.</p>
+              </td>
             </tr>
             </tbody>
         </table>

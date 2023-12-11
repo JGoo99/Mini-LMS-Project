@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 화면 </title>
+    <style>
+        .detail table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .detail table th, .detail table td {
+            border:solid 1px #000;
+        }
+        .login table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+        .login table th, .login table td {
+          border:solid 1px #000;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>관리자 배너 관리 - 배너 상세 정보</h1>
+    <div th:replace="/fragments/layout.html :: fragment-admin-body-menu"></div>
+
+
+    <div class="detail">
+
+        <table>
+            <tbody>
+                <tr>
+                    <th>배너명</th>
+                    <td>
+                        <p th:text="${}">메인배너1</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>배너 파일</th>
+                    <td>
+                        <p th:text="${}"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>링크 주소</th>
+                    <td>
+                        <a href=""></a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>오픈 방법</th>
+                    <td>
+                        <p th:text="${}"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>정렬 순서</th>
+                    <td>
+                        <p th:text="${}"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>공개 여부</th>
+                    <td>
+                      <p th:text="${}"></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div style="margin-top: 20px">
+      <a href="list.do"> 목록 </a>
+    </div>
+
+</body>
+</html>

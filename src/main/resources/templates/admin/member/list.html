@@ -32,6 +32,10 @@
             font-weight: bold;
             color: red;
         }
+        
+        .nothing {
+          text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -106,6 +110,11 @@
                 <td>
                   <!-- TODO  -->
                   <p th:text="${date[i.index]}">2021.01.01</p>
+                </td>
+              </tr>
+              <tr th:if="${#lists.size(list) < 1}">
+                <td colspan="8" >
+                  <p class="nothing">내용이 없습니다.</p>
                 </td>
               </tr>
             </tbody>

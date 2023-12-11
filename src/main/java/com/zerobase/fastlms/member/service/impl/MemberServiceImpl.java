@@ -105,7 +105,7 @@ public class MemberServiceImpl implements MemberService {
     public List<LoginDto> getLogins(String userId) {
         List<LoginDto> list = new ArrayList<>();
 
-        List<Login> logins = loginRepository.findByUserIdOrderByLoginDtDesc(userId);
+        List<Login> logins = loginRepository.findTop10ByUserIdOrderByLoginDtDesc(userId);
         for (int i = 0; i < logins.size(); i++) {
             list.add(LoginDto.of(logins.get(i)));
         }

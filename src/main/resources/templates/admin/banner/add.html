@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 화면 </title>
+    <style>
+        .form table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .form table th, .form table td {
+            border:solid 1px #000;
+        }
+        .form table th {
+            width: 300px;
+        }
+        
+        .buttons {
+          text-align: center;
+          margin: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>관리자 배너 관리 - 배너 등록 </h1>
+    <div th:replace="/fragments/layout.html :: fragment-admin-body-menu"></div>
+
+
+    <div class="form">
+      
+      <form method="post" action="/admin/banner/add.do">
+        
+        <table>
+          <tbody>
+          <tr>
+            <th>배너명</th>
+            <td>
+              <input type="text" name="bannerName" required placeholder="배너명 입력"/>
+            </td>
+          </tr>
+          <tr>
+            <th>배너 파일</th>
+            <td>
+              <input type="text" name="imageInfo" required placeholder="배너 파일 입력"/>
+            </td>
+          </tr>
+          <tr>
+            <th>링크 주소</th>
+            <td>
+              <input type="text" name="imageUrl" required placeholder="링크 주소 입력"/>
+            </td>
+          </tr>
+          <tr>
+            <th>오픈 방법</th>
+            <td>
+              <input type="text" name="clickTarget" required placeholder="오픈 방법 입력"/>
+            </td>
+          </tr>
+          <tr>
+            <th>정렬 순서</th>
+            <td>
+              <input type="text" name="showNumber" required placeholder="정렬 순서 입력"/>
+            </td>
+          </tr>
+          <tr>
+            <th>공개 여부</th>
+            <td>
+              <input type="checkbox" name="showYn" required/>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <button type="submit"> 배너 등록하기 </button>
+      </form>
+
+      
+    </div>
+    
+    <div class="buttons" style="margin-top: 20px">
+      <a href="list.do"> 목록 </a>
+    </div>
+
+</body>
+</html>

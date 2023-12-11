@@ -12,6 +12,6 @@ public interface LoginRepository extends JpaRepository<Login, String> {
 
   Optional<Login> findFirstByUserIdOrderByLoginDtDesc(String userId);
 
-  List<Login> findByUserIdOrderByLoginDtDesc(String userID);
+  List<Login> findTop10ByUserIdOrderByLoginDtDesc(String userID);
 
 }
