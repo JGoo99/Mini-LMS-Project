@@ -11,6 +11,13 @@
         .detail table th, .detail table td {
             border:solid 1px #000;
         }
+        .login table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+        .login table th, .login table td {
+          border:solid 1px #000;
+        }
 
     </style>
 </head>
@@ -19,7 +26,7 @@
     <div th:replace="/fragments/layout.html :: fragment-admin-body-menu"></div>
 
 
-    <div class="detail" >
+    <div class="detail">
 
         <table>
             <tbody>
@@ -96,14 +103,41 @@
             </tbody>
         </table>
 
-        <div>
-            <a href="list.do"> 목록 </a>
-
-        </div>
-
-
     </div>
-
+    
+<!--    TODO-->
+    <div class="login">
+        <table style="margin-top: 20px">
+            <thead>
+            <tr>
+                <th>NO</th>
+                <th>
+                  로그인 일자
+                </th>
+                <th>
+                  접속 IP
+                </th>
+                <th>
+                  접속 User Agent
+                </th>
+            </tr>
+            </thead>
+          
+            <tbody>
+            <tr th:each="x, i : ${logins}">
+                <td th:text="${i.count}">1</td>
+                <td th:text="${x.loginDt}">2023.12.10 14:15</td>
+                <td th:text="${x.clientIp}">127.0.0.1</td>
+                <td th:text="${x.userAgent}">Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div style="margin-top: 20px">
+      <a href="list.do"> 목록 </a>
+    
+    </div>
 
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.zerobase.fastlms.member.service;
 
+import com.zerobase.fastlms.admin.dto.LoginDto;
 import com.zerobase.fastlms.admin.dto.MemberDto;
 import com.zerobase.fastlms.admin.model.MemberParam;
 import com.zerobase.fastlms.course.model.ServiceResult;
@@ -12,13 +13,20 @@ import java.util.List;
 
 public interface MemberService extends UserDetailsService {
 
+    // TODO
     boolean login(MemberLoginInput parameter);
 
+    // TODO
     boolean register(MemberInput parameter);
 
+    // TODO
     void saveLoginHistory(String userId, String userAgent, String clientIp);
 
+    // TODO
     List<String> getLastLoginDt(List<MemberDto> members);
+
+    // TODO
+    List<LoginDto> getLogins(String userId);
     
     /**
      * uuid에 해당하는 계정을 활성화 함.
@@ -65,4 +73,5 @@ public interface MemberService extends UserDetailsService {
      * 회원을 탈퇴시켜 주는 로직
      */
     ServiceResult withdraw(String userId, String password);
+
 }

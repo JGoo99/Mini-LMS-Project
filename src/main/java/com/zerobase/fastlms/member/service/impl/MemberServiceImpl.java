@@ -1,5 +1,6 @@
 package com.zerobase.fastlms.member.service.impl;
 
+import com.zerobase.fastlms.admin.dto.LoginDto;
 import com.zerobase.fastlms.admin.dto.MemberDto;
 import com.zerobase.fastlms.admin.mapper.MemberMapper;
 import com.zerobase.fastlms.admin.model.MemberParam;
@@ -42,16 +43,16 @@ import java.util.UUID;
 public class MemberServiceImpl implements MemberService {
     
     private final MemberRepository memberRepository;
-    private final LoginRepository loginRepository;
     private final MailComponents mailComponents;
-    
     private final MemberMapper memberMapper;
+
+    // TODO
+    private final LoginRepository loginRepository;
     private final PasswordEncoder passwordEncoder;
 
+    // TODO
     @Override
     public boolean login(MemberLoginInput parameter) {
-        log.info(parameter.getUserId());
-        log.info(parameter.getPassword());
 
         Optional<Member> optionalMember =
           memberRepository.findByUserId(parameter.getUserId());
@@ -67,6 +68,7 @@ public class MemberServiceImpl implements MemberService {
         return true;
     }
 
+    // TODO
     @Override
     public void saveLoginHistory(String userId, String userAgent, String clientIp) {
         loginRepository.save(Login.builder()
@@ -77,6 +79,7 @@ public class MemberServiceImpl implements MemberService {
           .build());
     }
 
+    // TODO
     @Override
     public List<String> getLastLoginDt(List<MemberDto> members) {
         List<String> list = new ArrayList<>();
@@ -92,6 +95,19 @@ public class MemberServiceImpl implements MemberService {
             } else {
                 list.add("로그인 기록이 없습니다.");
             }
+        }
+
+        return list;
+    }
+
+    // TODO
+    @Override
+    public List<LoginDto> getLogins(String userId) {
+        List<LoginDto> list = new ArrayList<>();
+
+        List<Login> logins = loginRepository.findByUserIdOrderByLoginDtDesc(userId);
+        for (int i = 0; i < logins.size(); i++) {
+            list.add(LoginDto.of(logins.get(i)));
         }
 
         return list;

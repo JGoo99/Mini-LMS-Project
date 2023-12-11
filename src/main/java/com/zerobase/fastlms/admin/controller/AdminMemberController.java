@@ -1,10 +1,12 @@
 package com.zerobase.fastlms.admin.controller;
 
 
+import com.zerobase.fastlms.admin.dto.LoginDto;
 import com.zerobase.fastlms.admin.dto.MemberDto;
 import com.zerobase.fastlms.admin.model.MemberParam;
 import com.zerobase.fastlms.admin.model.MemberInput;
 import com.zerobase.fastlms.course.controller.BaseController;
+import com.zerobase.fastlms.member.entity.Login;
 import com.zerobase.fastlms.member.service.MemberService;
 import com.zerobase.fastlms.util.PageUtil;
 import lombok.RequiredArgsConstructor;
@@ -35,11 +37,14 @@ public class AdminMemberController extends BaseController {
         String queryString = parameter.getQueryString();
         String pagerHtml = getPaperHtml(totalCount, parameter.getPageSize(), parameter.getPageIndex(), queryString);
 
+        // TODO
         List<String> lastLoginDts = memberService.getLastLoginDt(members);
         
         model.addAttribute("list", members);
         model.addAttribute("totalCount", totalCount);
         model.addAttribute("pager", pagerHtml);
+
+        // TODO
         model.addAttribute("date", lastLoginDts);
         
         return "admin/member/list";
@@ -51,7 +56,12 @@ public class AdminMemberController extends BaseController {
         parameter.init();
         
         MemberDto member = memberService.detail(parameter.getUserId());
+
+        // TODO
+        List<LoginDto> logins = memberService.getLogins(parameter.getUserId());
+
         model.addAttribute("member", member);
+        model.addAttribute("logins", logins);
        
         return "admin/member/detail";
     }
