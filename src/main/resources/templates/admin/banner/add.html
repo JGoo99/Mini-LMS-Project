@@ -14,6 +14,9 @@
         .form table th {
             width: 300px;
         }
+        .form .buttons {
+          text-align: center;
+        }
         
         .buttons {
           text-align: center;
@@ -54,7 +57,10 @@
           <tr>
             <th>오픈 방법</th>
             <td>
-              <input type="text" name="clickTarget" required placeholder="오픈 방법 입력"/>
+              <select id="openType" name="clickTarget">
+                <option value="newPage"> 새로운 페이지에서 열기 </option>
+                <option value="curPage"> 현재 페이지에서 열기 </option>
+              </select>
             </td>
           </tr>
           <tr>
@@ -66,12 +72,12 @@
           <tr>
             <th>공개 여부</th>
             <td>
-              <input type="checkbox" name="showYn" required/>
+              <input type="checkbox" name="showYn"/> 공개
             </td>
           </tr>
           </tbody>
         </table>
-        <button type="submit"> 배너 등록하기 </button>
+        <button id="submit" type="submit"> 배너 등록하기 </button>
       </form>
 
       
