@@ -14,6 +14,6 @@ public interface BannerService {
 
     boolean update(BannerDto banner);
 
-    boolean del(long bannerId);
+    void del(String bannerId);
 
 }
