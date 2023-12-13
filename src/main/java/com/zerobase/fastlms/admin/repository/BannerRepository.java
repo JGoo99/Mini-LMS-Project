@@ -9,6 +9,6 @@ import java.util.List;
 // TODO
 
 public interface BannerRepository extends JpaRepository<Banner, Long> {
-  List<Banner> findAllByShowYnIsTrueOrderByShowNumber();
+  List<Banner> findTop3ByShowYnIsTrueOrderByShowNumber();
 
 }

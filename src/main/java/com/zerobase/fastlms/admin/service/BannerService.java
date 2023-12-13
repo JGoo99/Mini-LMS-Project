@@ -7,7 +7,9 @@ import java.util.List;
 // TODO
 
 public interface BannerService {
-    
+
+    List<BannerDto> list();
+
     List<BannerDto> getShowList();
 
     void add(BannerDto banner);

@@ -19,9 +19,14 @@ public class BannerServiceImpl implements BannerService {
     private final BannerRepository bannerRepository;
 
     @Override
+    public List<BannerDto> list() {
+        return BannerDto.of(bannerRepository.findAll());
+    }
+
+    @Override
     public List<BannerDto> getShowList() {
         List<Banner> banners =
-          bannerRepository.findAllByShowYnIsTrueOrderByShowNumber();
+          bannerRepository.findTop3ByShowYnIsTrueOrderByShowNumber();
         return BannerDto.of(banners);
     }
 

@@ -24,7 +24,7 @@ public class AdminBannerController {
     @GetMapping("/admin/banner/list.do")
     public String list(Model model) {
 
-        List<BannerDto> list = bannerService.getShowList();
+        List<BannerDto> list = bannerService.list();
 
         int totalCount = list.size();
 

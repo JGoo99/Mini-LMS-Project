@@ -24,11 +24,15 @@
   });
 </script>
 
-<ul class="bxslider">
-  <li><img src="/res/se2/img/banner/beach3.jpg"></li>
-  <li><img src="/res/se2/img/banner/beach1.jpg"></li>
-  <li><img src="/res/se2/img/banner/beach2.jpg"></li>
-</ul>
+<div>
+  <ul class="bxslider">
+    <li th:each="x : ${list}">
+      <img th:src="${x.imageInfo}" th:if="${x.imageInfo != null}"/>
+    </li>
+  </ul>
+</div>
+
+
 
 </body>
 </html>
