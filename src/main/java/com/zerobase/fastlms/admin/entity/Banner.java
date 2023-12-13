@@ -11,8 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
 
-// TODO
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

@@ -46,11 +46,9 @@ public class MemberServiceImpl implements MemberService {
     private final MailComponents mailComponents;
     private final MemberMapper memberMapper;
 
-    // TODO
     private final LoginRepository loginRepository;
     private final PasswordEncoder passwordEncoder;
 
-    // TODO
     @Override
     public boolean login(MemberLoginInput parameter) {
 
@@ -68,7 +66,6 @@ public class MemberServiceImpl implements MemberService {
         return true;
     }
 
-    // TODO
     @Override
     public void saveLoginHistory(String userId, String userAgent, String clientIp) {
         loginRepository.save(Login.builder()
@@ -79,7 +76,6 @@ public class MemberServiceImpl implements MemberService {
           .build());
     }
 
-    // TODO
     @Override
     public List<String> getLastLoginDt(List<MemberDto> members) {
         List<String> list = new ArrayList<>();
@@ -100,7 +96,6 @@ public class MemberServiceImpl implements MemberService {
         return list;
     }
 
-    // TODO
     @Override
     public List<LoginDto> getLogins(String userId) {
         List<LoginDto> list = new ArrayList<>();

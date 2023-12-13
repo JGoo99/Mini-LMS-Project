@@ -33,7 +33,6 @@ public class MemberController {
         return "member/login";
     }
 
-    // TODO
     @PostMapping("/member/login")
     public String login(Model model, MemberLoginInput parameter,
                         Principal principal, HttpServletRequest request) {
