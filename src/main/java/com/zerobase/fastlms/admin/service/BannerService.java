@@ -1,6 +1,7 @@
 package com.zerobase.fastlms.admin.service;
 
 import com.zerobase.fastlms.admin.dto.BannerDto;
+import com.zerobase.fastlms.admin.entity.Banner;
 
 import java.util.List;
 
@@ -18,4 +19,5 @@ public interface BannerService {
 
     void del(String bannerId);
 
+    BannerDto getDetail(String bannerId);
 }

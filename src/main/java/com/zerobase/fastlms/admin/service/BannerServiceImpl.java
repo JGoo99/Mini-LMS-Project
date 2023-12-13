@@ -37,6 +37,20 @@ public class BannerServiceImpl implements BannerService {
 
     @Override
     public boolean update(BannerDto banner) {
+        Banner b = bannerRepository.findById(banner.getId())
+          .orElseThrow(() -> new RuntimeException("해당 배너를 찾지 못했습니다."));
+
+        log.info(String.valueOf(b.getId()));
+
+        b.setBannerName(banner.getBannerName());
+        b.setImageInfo(banner.getImageInfo());
+        b.setImageUrl(banner.getImageUrl());
+        b.setClickTarget(banner.getClickTarget());
+        b.setShowNumber(banner.getShowNumber());
+        b.setShowYn(banner.isShowYn());
+
+        bannerRepository.save(b);
+
         return false;
     }
 
@@ -56,5 +70,15 @@ public class BannerServiceImpl implements BannerService {
                 }
             }
         }
+    }
+
+    @Override
+    public BannerDto getDetail(String bannerId) {
+
+        Long id = Long.parseLong(bannerId);
+        Banner banner = bannerRepository.findById(id)
+          .orElseThrow(() -> new RuntimeException("해당 배너를 찾지 못했습니다."));
+
+        return BannerDto.of(banner);
     }
 }

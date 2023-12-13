@@ -1,13 +1,13 @@
 package com.zerobase.fastlms.admin.controller;
 
 import com.zerobase.fastlms.admin.dto.BannerDto;
+import com.zerobase.fastlms.admin.entity.Banner;
 import com.zerobase.fastlms.admin.service.BannerServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -47,10 +47,39 @@ public class AdminBannerController {
         return "redirect:/admin/banner/list.do";
     }
 
+    @RequestMapping("/admin/banner/detail.do")
+    public String detail(Model model, @RequestParam String id) {
+
+        BannerDto banner = bannerService.getDetail(id);
+
+        model.addAttribute("banner", banner);
+
+        return "/admin/banner/detail";
+    }
+
+
     @PostMapping("/admin/banner/delete.do")
     public String delete(String idList) {
 
         bannerService.del(idList);
+
+        return "redirect:/admin/banner/list.do";
+    }
+
+    @RequestMapping("/admin/banner/update.do")
+    public String update(Model model, @RequestParam String id) {
+
+        BannerDto banner = bannerService.getDetail(id);
+
+        model.addAttribute("banner", banner);
+
+        return "/admin/banner/update";
+    }
+
+    @PostMapping("/admin/banner/update.do")
+    public String update(BannerDto request) {
+
+        bannerService.update(request);
 
         return "redirect:/admin/banner/list.do";
     }

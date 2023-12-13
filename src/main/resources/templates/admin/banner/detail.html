@@ -33,41 +33,45 @@
                 <tr>
                     <th>배너명</th>
                     <td>
-                        <p th:text="${}">메인배너1</p>
+                        <p th:text="${banner.bannerName}">메인배너1</p>
                     </td>
                 </tr>
                 <tr>
                     <th>배너 파일</th>
                     <td>
-                        <p th:text="${}"></p>
+                        <img class="image" th:src="${banner.imageInfo}" th:if="${banner.imageInfo != null}"/>
                     </td>
                 </tr>
                 <tr>
                     <th>링크 주소</th>
                     <td>
-                        <a href=""></a>
+                        <a th:href="${banner.imageUrl}" th:if="${banner.imageInfo != null}"></a>
                     </td>
                 </tr>
                 <tr>
                     <th>오픈 방법</th>
                     <td>
-                        <p th:text="${}"></p>
+                        <p th:text="${banner.clickTarget}"></p>
                     </td>
                 </tr>
                 <tr>
                     <th>정렬 순서</th>
                     <td>
-                        <p th:text="${}"></p>
+                        <p th:text="${banner.showNumber}"></p>
                     </td>
                 </tr>
                 <tr>
                     <th>공개 여부</th>
                     <td>
-                      <p th:text="${}"></p>
+                        <input type="checkbox" th:checked="${banner.showYn}"> 공개
                     </td>
                 </tr>
             </tbody>
         </table>
+    </div>
+    
+    <div>
+      <a th:href="'update.do?id=' + ${banner.id}"> 수정하기 </a>
     </div>
     
     <div style="margin-top: 20px">

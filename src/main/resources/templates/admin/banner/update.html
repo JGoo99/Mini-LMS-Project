@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>관리자 화면 </title>
+  <style>
+    .form table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .form table th, .form table td {
+      border:solid 1px #000;
+    }
+    .form table th {
+      width: 300px;
+    }
+    .form .buttons {
+      text-align: center;
+    }
+    
+    .buttons {
+      text-align: center;
+      margin: auto;
+    }
+    
+    .form .url {
+      width: 500px;
+    }
+  
+  </style>
+</head>
+<body>
+<h1>관리자 배너 관리 - 배너 수정 </h1>
+<div th:replace="/fragments/layout.html :: fragment-admin-body-menu"></div>
+
+
+<div class="form">
+  
+  <form method="post" action="/admin/banner/update.do">
+    
+    <table>
+      <tbody>
+      <tr>
+        <th>배너명</th>
+        <td>
+          <input type="text" name="bannerName" th:value="${banner.bannerName}"/>
+        </td>
+      </tr>
+      <tr>
+        <th>배너 파일</th>
+        <td>
+          <input class="url" type="text" name="imageInfo" th:value="${banner.imageInfo}"/>
+        </td>
+      </tr>
+      <tr>
+        <th>링크 주소</th>
+        <td>
+          <input class="url" type="text" name="imageUrl" th:value="${banner.imageUrl}"/>
+        </td>
+      </tr>
+      <tr>
+        <th>오픈 방법</th>
+        <td>
+          <select id="openType" name="clickTarget" th:default="${banner.clickTarget}">
+            <option value="newPage"> 새로운 페이지에서 열기 </option>
+            <option value="curPage"> 현재 페이지에서 열기 </option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>정렬 순서</th>
+        <td>
+          <input type="text" name="showNumber" th:value="${banner.showNumber}"/>
+        </td>
+      </tr>
+      <tr>
+        <th>공개 여부</th>
+        <td>
+          <input type="checkbox" th:value="${banner.showYn}"> 공개
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <input type="hidden" name="id" th:value="${banner.id}">
+    <button id="submit" type="submit"> 배너 수정하기 </button>
+  </form>
+
+
+</div>
+
+<div class="buttons" style="margin-top: 20px">
+  <a href="list.do"> 목록 </a>
+</div>
+
+</body>
+</html>
